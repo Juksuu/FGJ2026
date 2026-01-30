@@ -7,8 +7,8 @@
 		["#","#","#","#","#","#","#","#","#","#","#","#","#"],
 	],
 	"doors":[
-		{"from": [4,2], "to": [5,2], "keys": ["option1"]}
-		{"from": [6,2], "to": [7,2], "keys": ["option1", "vert"]}
+		{"from": [4,2], "to": [5,2], "keys": ["option1"]},
+		{"from": [6,2], "to": [7,2], "keys": ["option1", "vert"]},
 	],
 	"masks":[
 		{"pos": [2,2],"type": "chroma", "id": "option1"},
