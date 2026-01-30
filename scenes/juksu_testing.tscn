@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bu833k08t4urj"]
+
+[ext_resource type="Texture2D" uid="uid://dpmx5f1xc2rn0" path="res://assets/spritesheets/basetiles.png" id="1_gv0gx"]
+
+[node name="Node3D" type="Node3D" unique_id=1766391250]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1534350353]
+pixel_size = 1.0
+texture = ExtResource("1_gv0gx")
+region_enabled = true
+region_rect = Rect2(0, 0, 128.5, 128)
