@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://des7gualfwind"]
+
+[ext_resource type="Texture2D" uid="uid://dpmx5f1xc2rn0" path="res://assets/spritesheets/basetiles.png" id="1_iipex"]
+
+[node name="Wall" type="Sprite3D" unique_id=1738103451]
+pixel_size = 0.02
+texture = ExtResource("1_iipex")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 128)
