@@ -1,0 +1,22 @@
+{
+	"rooms":[
+		["#","#","#","#","#","#","#","#","#","#","#","#","#"],
+		["#","woow","wooo","wowo","#","#","#","woow","wooo","wowo","#"],
+		["#","ooow","oooo","oooo","wwoo","wwoo","wwoo","oooo","oowo","#"],
+		["#","owow","owoo","owwo","#","#","#","owow","owoo","owwo","#"],
+		["#","#","#","#","#","#","#","#","#","#","#","#","#"],
+	],
+	"doors":[
+		{"from": [4,2], "to": [5,2], "keys": ["option1"]}
+		{"from": [6,2], "to": [7,2], "keys": ["option1", "vert"]}
+	],
+	"masks":[
+		{"pos": [2,2],"type": "chroma", "id": "option1"},
+		{"pos": [5,2],"type": "cull", "id": "vert"}
+	],
+	"spawn": {"pos": [1,2]},
+	"goal": {"pos": [12,2]},
+	"custom": [
+		{"pos": [1, 4]}
+	]
+}
