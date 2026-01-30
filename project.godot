@@ -11,8 +11,15 @@ config_version=5
 [application]
 
 config/name="FGJ2026"
+run/main_scene="uid://bu833k08t4urj"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/aspect="keep_width"
 
 [physics]
 
@@ -23,3 +30,4 @@ config/icon="res://icon.svg"
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
