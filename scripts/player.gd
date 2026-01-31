@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var sensitivity: float = 1
 @export var walk_speed: float = 5
 @onready var hud_image = $CanvasLayer/heldItem
+@onready var camera = $Yaw/Pitch/Camera3D
 
 var yaw: float = 0
 var pitch: float = 0
@@ -46,8 +47,10 @@ func _input(event):
 			inv_index = 0
 		print(inv_index)
 		update_held_item()
-	if Input.is_action_just_pressed("use"):
-		wear_mask()
+	if Input.is_action_just_pressed("use") and inv_index != 0:
+		var held_mask = held_masks[inv_index-1]
+		if held_mask.type == "chroma":
+			wear_mask()
 	if Input.is_action_just_pressed("revert"):
 		remove_mask()
 
@@ -63,6 +66,11 @@ func _physics_process(_delta: float) -> void:
 	velocity.z = move.z * walk_speed
 
 	move_and_slide()
+
+	if Input.is_action_just_pressed("use") and inv_index != 0:
+		var held_mask = held_masks[inv_index-1]
+		if held_mask.type == "culling":
+			cast_mask()
 
 func set_initial_look_direction(direction: Globals.ROOM_SIDE) -> void:
 	var rotation_offset = PI / 2 if direction > 1 else 0.0
@@ -96,10 +104,22 @@ func wear_mask() -> void:
 		worn_a_mask.emit(held_mask.id)
 
 func remove_mask() -> void:
-	var held_mask = held_masks[inv_index-1]
-	if held_mask.type == "chroma":
-		RenderingServer.global_shader_parameter_set("mask_color", Vector4(1,1,1,1))
+	RenderingServer.global_shader_parameter_set("mask_color", Vector4(1,1,1,1))
 	worn_a_mask.emit(null)
 
 func cast_mask() -> void:
+	var from = camera.project_ray_origin(Vector2(640, 360))
+	var to = from + camera.project_ray_normal(Vector2(640, 360)) * 1000
+
+	var space_state = get_world_3d().direct_space_state
+
+	# use global coordinates, not local to node
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+
+	if result:
+		var parent = result.collider.get_parent()
+		if parent and parent.name == "Door":
+			parent.set_culling_mask()
 	pass

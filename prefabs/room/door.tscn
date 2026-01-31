@@ -17,7 +17,7 @@ shader_parameter/sheet_start = Vector2(0, 0)
 shader_parameter/mask_size = Vector2(128, 128)
 shader_parameter/color = Vector4(1, 1, 1, 0)
 
-[node name="Node3D" type="Sprite3D" unique_id=901255938]
+[node name="Door" type="Sprite3D" unique_id=901255938]
 pixel_size = 0.02
 texture_filter = 0
 texture = SubResource("ViewportTexture_k2pve")

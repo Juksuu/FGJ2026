@@ -62,7 +62,7 @@ func mix_paints(options) -> Vector4:
 	var highest = max(max(tot_r, tot_g), tot_b)
 	return Vector4(tot_r/highest, tot_g/highest, tot_b/highest, 1)
 
-func create_door(room_side: Globals.ROOM_SIDE, options = null) -> void:
+func create_door(room_side: Globals.ROOM_SIDE, options = null) -> Node:
 	var door = door_prefab.instantiate()
 	self.add_child(door)
 	doors.append(door)
@@ -87,7 +87,9 @@ func create_door(room_side: Globals.ROOM_SIDE, options = null) -> void:
 	var data = SIDE_DATA[room_side]
 	door.transform.origin = data.pos
 	door.rotation.y = data.rotation
-	
+
+	return door
+
 func check_openness(keys):
 	print("OPENING WITH ", keys, keys == null)
 	for door in doors:

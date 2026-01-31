@@ -56,20 +56,28 @@ func load_level(level: int) -> void:
 		var to_room = level_map[int(door_data.to[0])][int(door_data.to[1])]
 		var delta_x = door_data.to[0] - door_data.from[0]
 		var delta_y = door_data.to[1] - door_data.from[1]
+
+		var from_door = null
+		var to_door = null
 		if delta_x != 0:
 			if delta_x > 0:
-				from_room.create_door(Globals.ROOM_SIDE.EAST,door_data.keys)
-				to_room.create_door(Globals.ROOM_SIDE.WEST,door_data.keys)
+				from_door = from_room.create_door(Globals.ROOM_SIDE.EAST,door_data.keys)
+				to_door = to_room.create_door(Globals.ROOM_SIDE.WEST,door_data.keys)
 			else :
-				from_room.create_door(Globals.ROOM_SIDE.WEST,door_data.keys)
-				to_room.create_door(Globals.ROOM_SIDE.EAST,door_data.keys)
+				from_door = from_room.create_door(Globals.ROOM_SIDE.WEST,door_data.keys)
+				to_door = to_room.create_door(Globals.ROOM_SIDE.EAST,door_data.keys)
 		if delta_y != 0:
 			if delta_y < 0:
-				from_room.create_door(Globals.ROOM_SIDE.NORTH,door_data.keys)
-				to_room.create_door(Globals.ROOM_SIDE.SOUTH,door_data.keys)
+				from_door = from_room.create_door(Globals.ROOM_SIDE.NORTH,door_data.keys)
+				to_door = to_room.create_door(Globals.ROOM_SIDE.SOUTH,door_data.keys)
 			else:
-				from_room.create_door(Globals.ROOM_SIDE.SOUTH,door_data.keys)
-				to_room.create_door(Globals.ROOM_SIDE.NORTH,door_data.keys)
+				from_door = from_room.create_door(Globals.ROOM_SIDE.SOUTH,door_data.keys)
+				to_door = to_room.create_door(Globals.ROOM_SIDE.NORTH,door_data.keys)
+
+		if from_door and to_door:
+			from_door.apply_culling_mask.connect(func(): to_door.set_culling_mask(false))
+			to_door.apply_culling_mask.connect(func(): from_door.set_culling_mask(false))
+
 		player.connect("worn_a_mask", from_room.check_openness)
 		player.connect("worn_a_mask", to_room.check_openness)
 
@@ -94,7 +102,7 @@ func load_level(level: int) -> void:
 	player.transform.origin.z = level_data.spawn.pos[1] * SIZE_Z
 
 	player.set_initial_look_direction(level_data.spawn.direction)
-	
+
 func scream(mask: Node3D, player: Node3D) -> void:
 	#give to player here
 	player.add_to_inventory({"type": mask.key_type, "id": mask.key_id})
