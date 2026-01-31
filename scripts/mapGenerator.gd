@@ -93,5 +93,4 @@ func load_level(level: int) -> void:
 	player.transform.origin.x = level_data.spawn.pos[0] * SIZE_X
 	player.transform.origin.z = level_data.spawn.pos[1] * SIZE_Z
 
-	var rotation_offset = PI / 2 if level_data.spawn.direction > 1 else 0.0
-	player.rotation.y = level_data.spawn.direction * PI - rotation_offset
+	player.set_initial_look_direction(level_data.spawn.direction)
