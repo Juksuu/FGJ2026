@@ -95,7 +95,7 @@ func check_openness(keys):
 	for door in doors:
 		if keys == null:
 			door.toggle_door(false)
-		elif Globals.COLOR_OPTIONS[keys] == door.key_color:
+		elif Globals.COLOR_OPTIONS[keys] == door.key_color and door.has_been_culled():
 			door.toggle_door(true)
 		else:
 			door.toggle_door(false)

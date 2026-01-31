@@ -6,11 +6,14 @@ extends CharacterBody3D
 @onready var hud_image = $CanvasLayer/heldItem
 @onready var camera = $Yaw/Pitch/Camera3D
 
+signal culling_mask_applied()
+
 var yaw: float = 0
 var pitch: float = 0
 var rotation_speed: float = 0.03
 var held_masks = []
 var inv_index = 0
+var current_mask_id = null
 
 
 # Called when the node enters the scene tree for the first time.
@@ -101,10 +104,12 @@ func wear_mask() -> void:
 	var held_mask = held_masks[inv_index-1]
 	if held_mask.type == "chroma":
 		RenderingServer.global_shader_parameter_set("mask_color", Globals.COLOR_OPTIONS[held_mask.id])
+		current_mask_id = held_mask.id
 		worn_a_mask.emit(held_mask.id)
 
 func remove_mask() -> void:
 	RenderingServer.global_shader_parameter_set("mask_color", Vector4(1,1,1,1))
+	current_mask_id = null
 	worn_a_mask.emit(null)
 
 func cast_mask() -> void:
@@ -122,4 +127,5 @@ func cast_mask() -> void:
 		var parent = result.collider.get_parent()
 		if parent and parent.name == "Door":
 			parent.set_culling_mask()
-	pass
+		if current_mask_id:
+			culling_mask_applied.emit(current_mask_id)

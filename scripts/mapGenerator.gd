@@ -81,6 +81,9 @@ func load_level(level: int) -> void:
 		player.connect("worn_a_mask", from_room.check_openness)
 		player.connect("worn_a_mask", to_room.check_openness)
 
+		player.connect("culling_mask_applied", from_room.check_openness)
+		player.connect("culling_mask_applied", to_room.check_openness)
+
 	#pickups
 	for i in level_data.masks.size():
 		if level_data.masks.size() == 0:
