@@ -14,8 +14,7 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -35,7 +34,7 @@ func _input(event):
 		yaw += -event.relative.x * m_yaw * sensitivity * .1
 		pitch += -event.relative.y * m_yaw * sensitivity * .1
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var move = Vector3(
 		Input.get_action_strength("strafe_right") - Input.get_action_strength("strafe_left"),
 		0,

@@ -16,11 +16,6 @@ func _ready() -> void:
 	print("loading")
 	load_level(0)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func load_level(level: int) -> void:
 	level_map = []
 	var json_as_text = FileAccess.get_file_as_string(level_0_Data)

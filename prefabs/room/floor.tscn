@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cpivkomlk1oxk"]
 
-[ext_resource type="Script" uid="uid://comww4m0kay8s" path="res://scripts/door.gd" id="1_xlmwf"]
 [ext_resource type="Shader" uid="uid://cjchyawmwqqfa" path="res://shaders/global_color.gdshader" id="2_xlmwf"]
 [ext_resource type="Texture2D" uid="uid://dpmx5f1xc2rn0" path="res://assets/spritesheets/basetiles.png" id="3_m6e1n"]
 
@@ -15,7 +14,6 @@ pixel_size = 0.02
 axis = 1
 texture_filter = 0
 texture = SubResource("ViewportTexture_k2pve")
-script = ExtResource("1_xlmwf")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1223582698]
 transparent_bg = true

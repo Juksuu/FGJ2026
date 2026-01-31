@@ -7,10 +7,10 @@ var walls: Array[Sprite3D] = []
 var doors: Array[Node3D] = []
 
 const SIDE_DATA = [
-	{ "pos": Vector3(0, 1.28, -1.28), "axis": Vector3.AXIS_Z },
-	{ "pos": Vector3(0, 1.28, 1.28), "axis": Vector3.AXIS_Z },
-	{ "pos": Vector3(1.28, 1.28, 0), "axis": Vector3.AXIS_X },
-	{ "pos": Vector3(-1.28, 1.28, 0), "axis": Vector3.AXIS_X },
+	{ "pos": Vector3(0, 1.28, -1.28), "rotation": 0 },
+	{ "pos": Vector3(0, 1.28, 1.28), "rotation": 0 },
+	{ "pos": Vector3(1.28, 1.28, 0), "rotation": PI  / 2 },
+	{ "pos": Vector3(-1.28, 1.28, 0), "rotation": PI / 2 },
 ]
 
 # Called when the node enters the scene tree for the first time.
@@ -21,20 +21,13 @@ func _ready() -> void:
 		walls.append(wall)
 
 		var data = SIDE_DATA[i]
-		wall.translate(data.pos)
-		wall.axis = data.axis
-
-
-	#hide_wall(Globals.ROOM_SIDE.NORTH)
-	#create_door(Globals.ROOM_SIDE.NORTH, Vector4(0, 1, 0, 1))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+		wall.transform.origin = data.pos
+		wall.rotation.y = data.rotation
 
 func hide_wall(room_side: Globals.ROOM_SIDE) -> void:
-	walls[room_side].visible = false
+	var wall = walls[room_side]
+	wall.visible = false
+	wall.find_child("CollisionShape3D").disabled = true
 
 func create_door(room_side: Globals.ROOM_SIDE, color: Vector4) -> void:
 	var door = door_prefab.instantiate()
@@ -44,5 +37,5 @@ func create_door(room_side: Globals.ROOM_SIDE, color: Vector4) -> void:
 	door.set_color(color)
 
 	var data = SIDE_DATA[room_side]
-	door.translate(data.pos)
-	door.axis = data.axis
+	door.transform.origin = data.pos
+	door.rotation.y = data.rotation

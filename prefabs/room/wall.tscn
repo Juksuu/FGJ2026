@@ -6,6 +6,9 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_iipex"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7s1op"]
+size = Vector3(2.56, 2.56, 0.05)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jpxvr"]
 shader = ExtResource("1_7s1op")
 
@@ -14,6 +17,11 @@ pixel_size = 0.02
 texture_filter = 0
 texture = SubResource("ViewportTexture_iipex")
 region_rect = Rect2(0, 0, 128, 128)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=506585075]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1387342271]
+shape = SubResource("BoxShape3D_7s1op")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=859909957]
 size = Vector2i(128, 128)

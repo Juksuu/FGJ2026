@@ -14,11 +14,6 @@ const tile_dict = {
 func _ready() -> void:
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
 func set_texture(texture: String) -> void:
 	print(tile_dict[texture])
 	pickup.set_region_rect(Rect2(tile_dict[texture], 0, 128, 128))
