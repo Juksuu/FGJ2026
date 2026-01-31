@@ -85,17 +85,21 @@ func update_held_item() -> void:
 			hud_image.set_region_rect(Rect2(768, 0, 128, 128))
 			hud_image.material.set_shader_parameter("color", Globals.COLOR_OPTIONS[mask.id])
 
+signal worn_a_mask(key_ids);
+
 func wear_mask() -> void:
 	if inv_index == 0:
 		return
 	var held_mask = held_masks[inv_index-1]
 	if held_mask.type == "chroma":
 		RenderingServer.global_shader_parameter_set("mask_color", Globals.COLOR_OPTIONS[held_mask.id])
+		worn_a_mask.emit(held_mask.id)
 
 func remove_mask() -> void:
 	var held_mask = held_masks[inv_index-1]
 	if held_mask.type == "chroma":
 		RenderingServer.global_shader_parameter_set("mask_color", Vector4(1,1,1,1))
+	worn_a_mask.emit(null)
 
 func cast_mask() -> void:
 	pass

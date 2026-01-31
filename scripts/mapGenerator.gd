@@ -70,6 +70,8 @@ func load_level(level: int) -> void:
 			else:
 				from_room.create_door(Globals.ROOM_SIDE.SOUTH,door_data.keys)
 				to_room.create_door(Globals.ROOM_SIDE.NORTH,door_data.keys)
+		player.connect("worn_a_mask", from_room.check_openness)
+		player.connect("worn_a_mask", to_room.check_openness)
 
 	#pickups
 	for i in level_data.masks.size():
@@ -87,6 +89,7 @@ func load_level(level: int) -> void:
 		mask.set_key_type(level_data.masks[i].type)
 		mask.connect("pickup_pick_up", self.scream)
 
+	level_map[int(level_data.goal.pos[0])][int(level_data.goal.pos[1])].change_floor()
 	player.transform.origin.x = level_data.spawn.pos[0] * SIZE_X
 	player.transform.origin.z = level_data.spawn.pos[1] * SIZE_Z
 
