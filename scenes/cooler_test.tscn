@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cpohw55qqeuc6"]
 
-[ext_resource type="Script" uid="uid://cx3iirhgftn5n" path="res://scripts/mapGenerator.gd" id="1_mxd5j"]
+[ext_resource type="Script" uid="uid://cck4weihg37p6" path="res://scripts/mapGenerator.gd" id="1_mxd5j"]
 [ext_resource type="PackedScene" uid="uid://cc6w6vmqoo71r" path="res://prefabs/player.tscn" id="2_om74o"]
 
 [node name="CoolerTest" type="Node3D" unique_id=947194329]
