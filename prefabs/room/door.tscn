@@ -7,8 +7,14 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_k2pve"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_86stt"]
+size = Vector3(2.56, 2.56, 0.05)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ckgil"]
 shader = ExtResource("1_ckgil")
+shader_parameter/sheet_size = Vector2(1280, 128)
+shader_parameter/sheet_start = Vector2(0, 0)
+shader_parameter/mask_size = Vector2(128, 128)
 shader_parameter/color = Vector4(1, 1, 1, 0)
 
 [node name="Node3D" type="Sprite3D" unique_id=901255938]
@@ -16,6 +22,11 @@ pixel_size = 0.02
 texture_filter = 0
 texture = SubResource("ViewportTexture_k2pve")
 script = ExtResource("1_86stt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=202143166]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=524824396]
+shape = SubResource("BoxShape3D_86stt")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1223582698]
 transparent_bg = true

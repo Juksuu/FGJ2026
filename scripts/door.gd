@@ -7,3 +7,7 @@ func _ready() -> void:
 
 func set_color(color: Vector4) -> void:
 	door.material.set_shader_parameter("color", color)
+
+func set_cullable() -> void:
+	door.set_region_rect(Rect2(640, 0, 128, 128))
+	door.material.set_shader_parameter("sheet_start", Vector2(640, 0))

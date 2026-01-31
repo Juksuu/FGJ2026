@@ -17,7 +17,6 @@ const tile_dict = {
 func _ready() -> void:
 	pickup.material.resource_local_to_scene = true;
 	$Area3D.connect("body_entered", self._on_pickup_hit)
-	pass # Replace with function body.
 
 func set_texture(texture: String) -> void:
 	print(tile_dict[texture])

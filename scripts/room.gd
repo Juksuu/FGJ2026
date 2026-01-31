@@ -44,7 +44,7 @@ func create_door(room_side: Globals.ROOM_SIDE, options = null) -> void:
 	var door = door_prefab.instantiate()
 	self.add_child(door)
 	doors.append(door)
-	
+
 	if options:
 		print(options)
 		var coloropts = []
@@ -62,7 +62,8 @@ func create_door(room_side: Globals.ROOM_SIDE, options = null) -> void:
 			else:
 				print("PAINTING ", Globals.COLOR_OPTIONS[coloropts[0]])
 				door.set_color(Globals.COLOR_OPTIONS[coloropts[0]])
-		#if cullable:
+		if cullable:
+			door.set_cullable()
 
 	var data = SIDE_DATA[room_side]
 	door.transform.origin = data.pos
