@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b5pq8yf2wjkf5"]
+
+[ext_resource type="Script" uid="uid://comww4m0kay8s" path="res://scripts/door.gd" id="1_86stt"]
+[ext_resource type="Shader" uid="uid://cb3tihk4vcac2" path="res://shaders/door.gdshader" id="1_ckgil"]
+[ext_resource type="Texture2D" uid="uid://dpmx5f1xc2rn0" path="res://assets/spritesheets/basetiles.png" id="1_k2pve"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_k2pve"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ckgil"]
+shader = ExtResource("1_ckgil")
+shader_parameter/color = Vector4(1, 1, 1, 0)
+
+[node name="Node3D" type="Sprite3D" unique_id=901255938]
+pixel_size = 0.02
+texture_filter = 0
+texture = SubResource("ViewportTexture_k2pve")
+script = ExtResource("1_86stt")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1223582698]
+transparent_bg = true
+size = Vector2i(128, 128)
+
+[node name="DoorSprite" type="Sprite2D" parent="SubViewport" unique_id=352467428]
+material = SubResource("ShaderMaterial_ckgil")
+texture = ExtResource("1_k2pve")
+offset = Vector2(64, 64)
+region_enabled = true
+region_rect = Rect2(384, 0, 128, 128)

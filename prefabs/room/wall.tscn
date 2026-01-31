@@ -4,6 +4,7 @@
 
 [node name="Wall" type="Sprite3D" unique_id=1738103451]
 pixel_size = 0.02
+texture_filter = 0
 texture = ExtResource("1_iipex")
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 128)
