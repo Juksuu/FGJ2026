@@ -35,12 +35,14 @@ func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		yaw += -event.relative.x * m_yaw * sensitivity * .1
 		pitch += -event.relative.y * m_yaw * sensitivity * .1
-	inv_index += event.get_action_strength("inv_next") - event.get_action_strength("inv_previous")
-	if inv_index < 0:
-		inv_index = held_masks.size()
-	if inv_index > held_masks.size():
-		inv_index = 0
-	print(inv_index)
+
+	if Input.is_action_just_pressed("inv_next") or Input.is_action_just_pressed("inv_previous"):
+		inv_index += event.get_action_strength("inv_next") - event.get_action_strength("inv_previous")
+		if inv_index < 0:
+			inv_index = held_masks.size()
+		if inv_index > held_masks.size():
+			inv_index = 0
+		print(inv_index)
 
 func _physics_process(_delta: float) -> void:
 	var move = Vector3(
