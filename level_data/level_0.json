@@ -1,13 +1,14 @@
 {
 	"rooms":[
 		["#","#","#","#","#","#","#","#","#","#","#"],
-		["#","woow","wooo","wowo","#","#","#","woow","wooo","wowo","#"],
+		["#","woow","wowo","wowo","#","#","#","woow","wooo","wowo","#"],
 		["#","ooow","oooo","oooo","wwoo","wwoo","wwoo","oooo","oooo","oowo","#"],
 		["#","owow","owoo","owwo","#","#","#","owow","owoo","owwo","#"],
 		["#","#","#","#","#","#","#","#","#","#","#"],
 	],
 	"doors":[
 		{"from": [2,4], "to": [2,5], "keys": ["option1"]},
+		{"from": [2,3], "to": [1,3], "keys": ["option1"]},
 		{"from": [2,6], "to": [2,7], "keys": ["option1", "vert"]},
 	],
 	"masks":[

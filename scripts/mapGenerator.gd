@@ -50,29 +50,27 @@ func load_level(level: int) -> void:
 	
 	#doors
 	for i in level_data.doors.size():
-		--i
 		if level_data.doors.size() == 0:
 			break
 		var door_data = level_data.doors[i]
 		var from_room = level_map[int(door_data.from[0])][int(door_data.from[1])]
 		var to_room = level_map[int(door_data.to[0])][int(door_data.to[1])]
-		var delta_x = door_data.from[0] - door_data.to[0]
-		var delta_y = door_data.from[1] - door_data.to[1]
-		if delta_x != 0:
-			if delta_x > 0:
-				from_room.create_door(Globals.ROOM_SIDE.EAST)
-				to_room.create_door(Globals.ROOM_SIDE.WEST)
-			else :
-				from_room.create_door(Globals.ROOM_SIDE.WEST)
-				to_room.create_door(Globals.ROOM_SIDE.EAST)
+		var delta_x = door_data.to[0] - door_data.from[0]
+		var delta_y = door_data.to[1] - door_data.from[1]
 		if delta_y != 0:
 			if delta_y > 0:
-				from_room.create_door(Globals.ROOM_SIDE.NORTH)
-				to_room.create_door(Globals.ROOM_SIDE.SOUTH)
+				from_room.create_door(Globals.ROOM_SIDE.EAST,Vector4(1,0,1,1))
+				to_room.create_door(Globals.ROOM_SIDE.WEST,Vector4(1,0,1,1))
+			else :
+				from_room.create_door(Globals.ROOM_SIDE.WEST,Vector4(1,0,1,1))
+				to_room.create_door(Globals.ROOM_SIDE.EAST,Vector4(1,0,1,1))
+		if delta_x != 0:
+			if delta_x < 0:
+				from_room.create_door(Globals.ROOM_SIDE.NORTH,Vector4(1,0,1,1))
+				to_room.create_door(Globals.ROOM_SIDE.SOUTH,Vector4(1,0,1,1))
 			else:
-				from_room.create_door(Globals.ROOM_SIDE.SOUTH)
-				to_room.create_door(Globals.ROOM_SIDE.NORTH)
-		from_room.create_door()
+				from_room.create_door(Globals.ROOM_SIDE.SOUTH,Vector4(1,0,1,1))
+				to_room.create_door(Globals.ROOM_SIDE.NORTH,Vector4(1,0,1,1))
 	
 	#pickups
 	for i in level_data.masks.size():
