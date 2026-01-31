@@ -83,10 +83,11 @@ func update_held_item() -> void:
 			hud_image.set_region_rect(Rect2(1152, 0, 128, 128))
 		else:
 			hud_image.set_region_rect(Rect2(768, 0, 128, 128))
+			hud_image.material.set_shader_parameter("color", Globals.COLOR_OPTIONS[mask.id])
 
 func wear_mask() -> void:
 	if inv_index == 0:
-		pass
+		return
 	var held_mask = held_masks[inv_index-1]
 	if held_mask.type == "chroma":
 		RenderingServer.global_shader_parameter_set("mask_color", Globals.COLOR_OPTIONS[held_mask.id])

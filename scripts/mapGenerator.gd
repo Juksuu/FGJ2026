@@ -58,18 +58,18 @@ func load_level(level: int) -> void:
 		var delta_y = door_data.to[1] - door_data.from[1]
 		if delta_x != 0:
 			if delta_x > 0:
-				from_room.create_door(Globals.ROOM_SIDE.EAST,Globals.COLOR_OPTIONS[door_data.keys[0]])
-				to_room.create_door(Globals.ROOM_SIDE.WEST,Globals.COLOR_OPTIONS[door_data.keys[0]])
+				from_room.create_door(Globals.ROOM_SIDE.EAST,door_data.keys)
+				to_room.create_door(Globals.ROOM_SIDE.WEST,door_data.keys)
 			else :
-				from_room.create_door(Globals.ROOM_SIDE.WEST,Globals.COLOR_OPTIONS[door_data.keys[0]])
-				to_room.create_door(Globals.ROOM_SIDE.EAST,Globals.COLOR_OPTIONS[door_data.keys[0]])
+				from_room.create_door(Globals.ROOM_SIDE.WEST,door_data.keys)
+				to_room.create_door(Globals.ROOM_SIDE.EAST,door_data.keys)
 		if delta_y != 0:
 			if delta_y < 0:
-				from_room.create_door(Globals.ROOM_SIDE.NORTH,Globals.COLOR_OPTIONS[door_data.keys[0]])
-				to_room.create_door(Globals.ROOM_SIDE.SOUTH,Globals.COLOR_OPTIONS[door_data.keys[0]])
+				from_room.create_door(Globals.ROOM_SIDE.NORTH,door_data.keys)
+				to_room.create_door(Globals.ROOM_SIDE.SOUTH,door_data.keys)
 			else:
-				from_room.create_door(Globals.ROOM_SIDE.SOUTH,Globals.COLOR_OPTIONS[door_data.keys[0]])
-				to_room.create_door(Globals.ROOM_SIDE.NORTH,Globals.COLOR_OPTIONS[door_data.keys[0]])
+				from_room.create_door(Globals.ROOM_SIDE.SOUTH,door_data.keys)
+				to_room.create_door(Globals.ROOM_SIDE.NORTH,door_data.keys)
 
 	#pickups
 	for i in level_data.masks.size():

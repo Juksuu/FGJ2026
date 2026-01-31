@@ -15,6 +15,7 @@ const tile_dict = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	pickup.material.resource_local_to_scene = true;
 	$Area3D.connect("body_entered", self._on_pickup_hit)
 	pass # Replace with function body.
 

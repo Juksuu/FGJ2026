@@ -8,12 +8,12 @@
 	],
 	"doors":[
 		{"from": [4,2], "to": [5,2], "keys": ["color_1"]},
-		{"from": [3,2], "to": [3,1], "keys": ["color_1"]},
-		{"from": [6,2], "to": [7,2], "keys": ["color_1", "vert"]}
+		{"from": [3,2], "to": [3,1], "keys": ["color_2"]},
+		{"from": [6,2], "to": [7,2], "keys": ["color_3"]}
 	],
 	"masks":[
 		{"pos": [2,2],"type": "chroma", "id": "color_1"},
-		{"pos": [5,2],"type": "culling", "id": "vert"}
+		{"pos": [5,2],"type": "chroma", "id": "color_3"}
 	],
 	"spawn": {"pos": [1,2], "direction": 2},
 	"goal": {"pos": [12,2]},
