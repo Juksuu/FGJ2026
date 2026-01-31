@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://cpohw55qqeuc6"]
 
-[ext_resource type="Script" uid="uid://d2himnsgte42k" path="res://scripts/mapGenerator.gd" id="1_mxd5j"]
+[ext_resource type="Script" uid="uid://cx3iirhgftn5n" path="res://scripts/mapGenerator.gd" id="1_mxd5j"]
+[ext_resource type="PackedScene" uid="uid://cc6w6vmqoo71r" path="res://prefabs/player.tscn" id="2_om74o"]
 
 [node name="CoolerTest" type="Node3D" unique_id=947194329]
 script = ExtResource("1_mxd5j")
 level_0_Data = "res://level_data/level_0.json"
+level_1_Data = "res://level_data/level_1.json"
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1566131125]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 26.201063, 0)
+[node name="Player" parent="." unique_id=1673708471 instance=ExtResource("2_om74o")]

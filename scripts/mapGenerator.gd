@@ -3,6 +3,7 @@ const room_prefab: PackedScene = preload("res:///prefabs/room/room.tscn")
 const chroma_prefab: PackedScene = preload("res://prefabs/chroma.tscn")
 #var level_0_data_path = "res://level_data/level_0.json"
 @export_file("*.json") var level_0_Data;
+@export_file("*.json") var level_1_Data;
 
 @onready var player = $Player
 
@@ -22,10 +23,10 @@ func _process(delta: float) -> void:
 
 func load_level(level: int) -> void:
 	level_map = []
-	var json_as_text = FileAccess.get_file_as_string(level_0_Data)
+	var json_as_text = FileAccess.get_file_as_string(level_1_Data)
 	var level_data = JSON.parse_string(json_as_text)
 
-	#print(level_data)
+	print(level_data)
 	var height = level_data.rooms.size()
 	var width = level_data.rooms[0].size()
 
@@ -86,6 +87,8 @@ func load_level(level: int) -> void:
 		mask.transform.origin.x = level_data.masks[i].pos[0] * SIZE_X
 		mask.transform.origin.z = level_data.masks[i].pos[1] * SIZE_Z
 		self.add_child(mask)
+		mask.set_texture(level_data.masks[i].type)
+		mask.set_color(Vector4(1,0,1,1))
 
 	player.transform.origin.x = level_data.spawn.pos[0] * SIZE_X
 	player.transform.origin.z = level_data.spawn.pos[1] * SIZE_Z
