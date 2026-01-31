@@ -1,10 +1,26 @@
 [gd_scene format=3 uid="uid://des7gualfwind"]
 
+[ext_resource type="Shader" uid="uid://cjchyawmwqqfa" path="res://shaders/global_color.gdshader" id="1_7s1op"]
 [ext_resource type="Texture2D" uid="uid://dpmx5f1xc2rn0" path="res://assets/spritesheets/basetiles.png" id="1_iipex"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iipex"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jpxvr"]
+shader = ExtResource("1_7s1op")
 
 [node name="Wall" type="Sprite3D" unique_id=1738103451]
 pixel_size = 0.02
 texture_filter = 0
+texture = SubResource("ViewportTexture_iipex")
+region_rect = Rect2(0, 0, 128, 128)
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=859909957]
+size = Vector2i(128, 128)
+
+[node name="WallSprite" type="Sprite2D" parent="SubViewport" unique_id=671517031]
+material = SubResource("ShaderMaterial_jpxvr")
 texture = ExtResource("1_iipex")
+offset = Vector2(64, 64)
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 128)

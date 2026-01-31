@@ -2,17 +2,13 @@
 
 [ext_resource type="Script" uid="uid://iqymun3fw7x0" path="res://scripts/room.gd" id="1_62glj"]
 [ext_resource type="Texture2D" uid="uid://dpmx5f1xc2rn0" path="res://assets/spritesheets/basetiles.png" id="1_vmxit"]
+[ext_resource type="PackedScene" uid="uid://cpivkomlk1oxk" path="res://prefabs/room/floor.tscn" id="3_sk5ro"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_y4ddq"]
+viewport_path = NodePath("SubViewport")
 
 [node name="Room" type="Node3D" unique_id=1291459412]
 script = ExtResource("1_62glj")
-
-[node name="Floor" type="Sprite3D" parent="." unique_id=278612693]
-pixel_size = 0.02
-axis = 1
-texture_filter = 0
-texture = ExtResource("1_vmxit")
-region_enabled = true
-region_rect = Rect2(128, 0, 128, 128)
 
 [node name="Roof" type="Sprite3D" parent="." unique_id=1468956095]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.56, 0)
@@ -21,3 +17,6 @@ texture_filter = 0
 texture = ExtResource("1_vmxit")
 region_enabled = true
 region_rect = Rect2(256, 0, 128, 128)
+
+[node name="Floor" parent="." unique_id=901255938 instance=ExtResource("3_sk5ro")]
+texture = SubResource("ViewportTexture_y4ddq")

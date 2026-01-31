@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 
 func load_level(level: int) -> void:
 	level_map = []
-	var json_as_text = FileAccess.get_file_as_string(level_1_Data)
+	var json_as_text = FileAccess.get_file_as_string(level_0_Data)
 	var level_data = JSON.parse_string(json_as_text)
 
 	print(level_data)

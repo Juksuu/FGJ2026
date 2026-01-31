@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bu833k08t4urj"]
 
 [ext_resource type="PackedScene" uid="uid://cc6w6vmqoo71r" path="res://prefabs/player.tscn" id="1_mmtsk"]
-[ext_resource type="Script" uid="uid://d2himnsgte42k" path="res://scripts/mapGenerator.gd" id="1_uh5tw"]
+[ext_resource type="Script" uid="uid://cck4weihg37p6" path="res://scripts/mapGenerator.gd" id="1_uh5tw"]
 
 [node name="Node3D" type="Node" unique_id=1371376071]
 
