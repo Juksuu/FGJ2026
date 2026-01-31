@@ -5,3 +5,6 @@
 [node name="CoolerTest" type="Node3D" unique_id=947194329]
 script = ExtResource("1_mxd5j")
 level_0_Data = "res://level_data/level_0.json"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1566131125]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 26.201063, 0)

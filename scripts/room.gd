@@ -25,8 +25,8 @@ func _ready() -> void:
 		wall.axis = data.axis
 
 
-	hide_wall(Globals.ROOM_SIDE.NORTH)
-	create_door(Globals.ROOM_SIDE.NORTH, Vector4(0, 1, 0, 1))
+	#hide_wall(Globals.ROOM_SIDE.NORTH)
+	#create_door(Globals.ROOM_SIDE.NORTH, Vector4(0, 1, 0, 1))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
