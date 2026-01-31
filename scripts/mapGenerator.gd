@@ -58,18 +58,18 @@ func load_level(level: int) -> void:
 		var delta_y = door_data.to[1] - door_data.from[1]
 		if delta_x != 0:
 			if delta_x > 0:
-				from_room.create_door(Globals.ROOM_SIDE.EAST,Vector4(1,0,1,1))
-				to_room.create_door(Globals.ROOM_SIDE.WEST,Vector4(1,0,1,1))
+				from_room.create_door(Globals.ROOM_SIDE.EAST,Globals.COLOR_OPTIONS[door_data.keys[0]])
+				to_room.create_door(Globals.ROOM_SIDE.WEST,Globals.COLOR_OPTIONS[door_data.keys[0]])
 			else :
-				from_room.create_door(Globals.ROOM_SIDE.WEST,Vector4(1,0,1,1))
-				to_room.create_door(Globals.ROOM_SIDE.EAST,Vector4(1,0,1,1))
+				from_room.create_door(Globals.ROOM_SIDE.WEST,Globals.COLOR_OPTIONS[door_data.keys[0]])
+				to_room.create_door(Globals.ROOM_SIDE.EAST,Globals.COLOR_OPTIONS[door_data.keys[0]])
 		if delta_y != 0:
 			if delta_y < 0:
-				from_room.create_door(Globals.ROOM_SIDE.NORTH,Vector4(1,0,1,1))
-				to_room.create_door(Globals.ROOM_SIDE.SOUTH,Vector4(1,0,1,1))
+				from_room.create_door(Globals.ROOM_SIDE.NORTH,Globals.COLOR_OPTIONS[door_data.keys[0]])
+				to_room.create_door(Globals.ROOM_SIDE.SOUTH,Globals.COLOR_OPTIONS[door_data.keys[0]])
 			else:
-				from_room.create_door(Globals.ROOM_SIDE.SOUTH,Vector4(1,0,1,1))
-				to_room.create_door(Globals.ROOM_SIDE.NORTH,Vector4(1,0,1,1))
+				from_room.create_door(Globals.ROOM_SIDE.SOUTH,Globals.COLOR_OPTIONS[door_data.keys[0]])
+				to_room.create_door(Globals.ROOM_SIDE.NORTH,Globals.COLOR_OPTIONS[door_data.keys[0]])
 
 	#pickups
 	for i in level_data.masks.size():
@@ -81,7 +81,8 @@ func load_level(level: int) -> void:
 		mask.transform.origin.z = level_data.masks[i].pos[1] * SIZE_Z
 		self.add_child(mask)
 		mask.set_texture(level_data.masks[i].type)
-		mask.set_color(Vector4(1,0,1,1))
+		if level_data.masks[i].type == "chroma":
+			mask.set_color(Globals.COLOR_OPTIONS[level_data.masks[i].id])
 		mask.set_key_id(level_data.masks[i].id)
 		mask.set_key_type(level_data.masks[i].type)
 		mask.connect("pickup_pick_up", self.scream)

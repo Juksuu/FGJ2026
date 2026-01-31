@@ -26,6 +26,7 @@ render_target_update_mode = 4
 [node name="Map" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1541714557]
 script = ExtResource("1_uh5tw")
 level_0_Data = "res://level_data/level_0.json"
+level_1_Data = "res://level_data/level_1.json"
 
 [node name="Player" parent="SubViewportContainer/SubViewport/Map" unique_id=1673708471 instance=ExtResource("1_mmtsk")]
 visible = false

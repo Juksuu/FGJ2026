@@ -44,7 +44,7 @@
 		{"pos": [18,13],"type": "culling", "id": "cull_2"},
 		{"pos": [2,14],"type": "culling", "id": "cull_1"},
 		{"pos": [2,17],"type": "chroma", "id": "color_1"},
-		{"pos": [13,17],"type": "chroma", "id": "color_1"},
+		{"pos": [13,17],"type": "chroma", "id": "color_2"},
 	],
 	"spawn": {"pos": [2,19],"direction": 2},
 	"goal": {"pos": [7,4]},
