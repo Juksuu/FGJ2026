@@ -7,6 +7,7 @@ extends CharacterBody3D
 var yaw: float = 0
 var pitch: float = 0
 var rotation_speed: float = 0.03
+var held_masks = []
 
 
 # Called when the node enters the scene tree for the first time.
@@ -50,3 +51,7 @@ func _physics_process(_delta: float) -> void:
 func set_initial_look_direction(direction: Globals.ROOM_SIDE) -> void:
 	var rotation_offset = PI / 2 if direction > 1 else 0.0
 	yaw = direction * PI - rotation_offset
+
+func add_to_inventory(object) -> void:
+	print("adding", object)
+	held_masks.append(object)

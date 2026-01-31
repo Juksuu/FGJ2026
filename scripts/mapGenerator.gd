@@ -21,7 +21,7 @@ func load_level(level: int) -> void:
 	var json_as_text = FileAccess.get_file_as_string(level_0_Data)
 	var level_data = JSON.parse_string(json_as_text)
 
-	print(level_data)
+	#print(level_data)
 	var height = level_data.rooms.size()
 	var width = level_data.rooms[0].size()
 
@@ -35,7 +35,7 @@ func load_level(level: int) -> void:
 			self.add_child(room)
 			room_column.append(room)
 
-			print(room_info)
+			#print(room_info)
 			if room_info == "#":
 				room.hide_wall(0)
 				room.hide_wall(1)
@@ -46,8 +46,6 @@ func load_level(level: int) -> void:
 					if room_info[index] == "o":
 						room.hide_wall(index)
 		level_map.append(room_column)
-	for thing in level_map:
-		print(thing.size())
 
 	#doors
 	for i in level_data.doors.size():
@@ -77,15 +75,23 @@ func load_level(level: int) -> void:
 	for i in level_data.masks.size():
 		if level_data.masks.size() == 0:
 			break
-		print(level_data.masks[i])
+		#print(level_data.masks[i])
 		var mask = chroma_prefab.instantiate()
 		mask.transform.origin.x = level_data.masks[i].pos[0] * SIZE_X
 		mask.transform.origin.z = level_data.masks[i].pos[1] * SIZE_Z
 		self.add_child(mask)
 		mask.set_texture(level_data.masks[i].type)
 		mask.set_color(Vector4(1,0,1,1))
+		mask.set_key_id(level_data.masks[i].id)
+		mask.set_key_type(level_data.masks[i].type)
+		mask.connect("pickup_pick_up", self.scream)
 
 	player.transform.origin.x = level_data.spawn.pos[0] * SIZE_X
 	player.transform.origin.z = level_data.spawn.pos[1] * SIZE_Z
 
 	player.set_initial_look_direction(level_data.spawn.direction)
+	
+func scream(mask: Node3D, player: Node3D) -> void:
+	#give to player here
+	player.add_to_inventory({"type": mask.key_type, "id": mask.key_id})
+	call_deferred("remove_child", mask)
