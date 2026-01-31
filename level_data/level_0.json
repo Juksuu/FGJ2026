@@ -4,18 +4,18 @@
 		["#","woow","wowo","wowo","#","#","#","woow","wooo","wowo","#"],
 		["#","ooow","oooo","oooo","wwoo","wwoo","wwoo","oooo","oooo","oowo","#"],
 		["#","owow","owoo","owwo","#","#","#","owow","owoo","owwo","#"],
-		["#","#","#","#","#","#","#","#","#","#","#"],
+		["#","#","#","#","#","#","#","#","#","#","#"]
 	],
 	"doors":[
-		{"from": [2,4], "to": [2,5], "keys": ["option1"]},
-		{"from": [2,3], "to": [1,3], "keys": ["option1"]},
-		{"from": [2,6], "to": [2,7], "keys": ["option1", "vert"]},
+		{"from": [4,2], "to": [5,2], "keys": ["option1"]},
+		{"from": [3,2], "to": [3,1], "keys": ["option1"]},
+		{"from": [6,2], "to": [7,2], "keys": ["option1", "vert"]}
 	],
 	"masks":[
 		{"pos": [2,2],"type": "chroma", "id": "option1"},
-		{"pos": [5,2],"type": "cull", "id": "vert"}
+		{"pos": [2,5],"type": "cull", "id": "vert"}
 	],
-	"spawn": {"pos": [1,2]},
+	"spawn": {"pos": [1,2], "direction": 3},
 	"goal": {"pos": [12,2]},
 	"custom": [
 		{"pos": [1, 4]}
