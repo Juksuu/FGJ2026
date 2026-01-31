@@ -11,12 +11,12 @@ float max3(vec4 v) {
 void fragment() {
 	vec4 c = texture(TEXTURE, UV);
 
-	float mask_is_white = float(int(c.r) & int(c.g) & int(c.b) & int(c.a));
+	float is_white = float(all(equal(c, vec4(1))));
 
 	vec4 combined_color = color + mask_color;
 	combined_color.rgb /= max3(combined_color);
 
-	vec4 applied_color = mix(c, combined_color, mask_is_white);
+	vec4 applied_color = mix(c, combined_color, is_white);
 
 	COLOR = applied_color;
 }

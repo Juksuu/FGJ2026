@@ -1,11 +1,16 @@
 [gd_scene format=3 uid="uid://bu833k08t4urj"]
 
+[ext_resource type="Shader" uid="uid://cjchyawmwqqfa" path="res://shaders/global_color.gdshader" id="1_18pk7"]
 [ext_resource type="PackedScene" uid="uid://cc6w6vmqoo71r" path="res://prefabs/player.tscn" id="1_mmtsk"]
 [ext_resource type="Script" uid="uid://cck4weihg37p6" path="res://scripts/mapGenerator.gd" id="1_uh5tw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jk4pt"]
+shader = ExtResource("1_18pk7")
 
 [node name="Node3D" type="Node" unique_id=1371376071]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=390908242]
+material = SubResource("ShaderMaterial_jk4pt")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
