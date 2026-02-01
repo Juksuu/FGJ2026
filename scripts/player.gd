@@ -48,7 +48,6 @@ func _input(event):
 			inv_index = int(held_masks.size())
 		if inv_index > held_masks.size():
 			inv_index = 0
-		print(inv_index)
 		update_held_item()
 	if Input.is_action_just_pressed("use") and inv_index != 0:
 		var held_mask = held_masks[inv_index-1]
@@ -80,7 +79,6 @@ func set_initial_look_direction(direction: Globals.ROOM_SIDE) -> void:
 	yaw = direction * PI - rotation_offset
 
 func add_to_inventory(object) -> void:
-	print("adding", object)
 	held_masks.append(object)
 
 func update_held_item() -> void:

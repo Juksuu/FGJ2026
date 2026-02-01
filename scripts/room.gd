@@ -33,19 +33,26 @@ func hide_wall(room_side: Globals.ROOM_SIDE) -> void:
 
 func change_floor() -> void:
 	$Floor.set_region_rect(Rect2(1024, 0, 128, 128))
-	var cylinder = CylinderShape3D.new()
-	cylinder.height = 10
-	cylinder.radius = 1
-	var win_area = CollisionShape3D.new()
-	win_area.shape = cylinder
-	win_area.visible = true
+	var win_area = Area3D.new()
 	self.add_child(win_area)
+	var collision_shape = CollisionShape3D.new()
+	var cylinder = CylinderShape3D.new()
+	cylinder.height = 1
+	cylinder.radius = 1
+	collision_shape.shape = cylinder
+	win_area.add_child(collision_shape)
+	
+	
 	win_area.connect("body_entered", scream)
-	cylinder.connect("body_entered", scream)
 
 
-func scream() -> void:
-	print("AAAAAAAAAAAAAAAAa")
+func scream(node) -> void:
+	if node.name != "Player":
+		pass
+	print("winnings")
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	call_deferred("get_tree().change_scene_to_file(\"res://scenes/main_menu.tscn\")")
 #func create_door(room_side: Globals.ROOM_SIDE, color: Vector4) -> void:
 #	var door = door_prefab.instantiate()
 #	self.add_child(door)
@@ -75,7 +82,6 @@ func create_door(room_side: Globals.ROOM_SIDE, options = null) -> Node:
 	doors.append(door)
 
 	if options:
-		print(options)
 		var coloropts = []
 		var cullable = false
 		for option in options:
@@ -98,7 +104,6 @@ func create_door(room_side: Globals.ROOM_SIDE, options = null) -> Node:
 	return door
 
 func check_openness(keys):
-	print("OPENING WITH ", keys, keys == null)
 	for door in doors:
 		if keys == null:
 			door.toggle_door(false)

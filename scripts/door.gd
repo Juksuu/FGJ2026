@@ -24,10 +24,8 @@ func set_cullable() -> void:
 
 func toggle_door(open: bool) -> void:
 	if open:
-		print("OOPEN")
 		$StaticBody3D.collision_layer = 0
 	else:
-		print("CLOOSING")
 		$StaticBody3D.collision_layer = 1
 
 func set_culling_mask(emit = true) -> void:
@@ -37,5 +35,5 @@ func set_culling_mask(emit = true) -> void:
 		apply_culling_mask.emit()
 
 func has_been_culled() -> bool:
-	print("testing", cullable, is_culled)
+	#print("testing", cullable, is_culled)
 	return not cullable or is_culled

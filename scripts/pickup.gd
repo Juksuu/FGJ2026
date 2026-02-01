@@ -19,7 +19,6 @@ func _ready() -> void:
 	$Area3D.connect("body_entered", self._on_pickup_hit)
 
 func set_texture(texture: String) -> void:
-	print(tile_dict[texture])
 	pickup.set_region_rect(Rect2(tile_dict[texture], 0, 128, 128))
 
 func set_color(color: Vector4) -> void:
