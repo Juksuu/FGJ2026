@@ -6,6 +6,8 @@ const door_prefab: PackedScene = preload("res://prefabs/room/door.tscn")
 var walls: Array[Sprite3D] = []
 var doors: Array[Node3D] = []
 
+var winarea
+
 const SIDE_DATA = [
 	{ "pos": Vector3(0, 1.28, -1.28), "rotation": 0 },
 	{ "pos": Vector3(0, 1.28, 1.28), "rotation": 0 },
@@ -38,7 +40,12 @@ func change_floor() -> void:
 	win_area.shape = cylinder
 	win_area.visible = true
 	self.add_child(win_area)
+	win_area.connect("body_entered", scream)
+	cylinder.connect("body_entered", scream)
 
+
+func scream() -> void:
+	print("AAAAAAAAAAAAAAAAa")
 #func create_door(room_side: Globals.ROOM_SIDE, color: Vector4) -> void:
 #	var door = door_prefab.instantiate()
 #	self.add_child(door)
