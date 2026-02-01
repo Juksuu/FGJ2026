@@ -2,8 +2,8 @@ extends Node
 const room_prefab: PackedScene = preload("res:///prefabs/room/room.tscn")
 const chroma_prefab: PackedScene = preload("res://prefabs/chroma.tscn")
 #var level_0_data_path = "res://level_data/level_0.json"
-@export_file("*.json") var level_0_Data;
-@export_file("*.json") var level_1_Data;
+@export_file("*.json") var level_data: Array[String];
+
 
 @onready var player = $Player
 
@@ -13,11 +13,11 @@ var level_map = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	load_level(0)
+	load_level(Globals.level_index)
 
 func load_level(level: int) -> void:
 	level_map = []
-	var json_as_text = FileAccess.get_file_as_string(level_0_Data)
+	var json_as_text = FileAccess.get_file_as_string(level_data[level])
 	var level_data = JSON.parse_string(json_as_text)
 
 	var height = level_data.rooms.size()
