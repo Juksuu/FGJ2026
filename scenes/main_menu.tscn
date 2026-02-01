@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://dnt1s25xta86v"]
+
+[ext_resource type="Script" uid="uid://21b0hkav0g8q" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://duh0lv11evg8n" path="res://assets/sprites/title.png" id="2_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://duwsjsr1qcqth" path="res://assets/sprites/button.png" id="2_ekxnf"]
+
+[node name="MainMenu" type="Control" unique_id=1141820166]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=34984290]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_bqqt6")
+
+[node name="QuitButton" type="TextureButton" parent="." unique_id=1240664932]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.55
+anchor_right = 0.8
+anchor_bottom = 0.55
+offset_left = 64.0
+offset_right = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+action_mode = 0
+texture_normal = ExtResource("2_ekxnf")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="QuitButton" unique_id=524577631]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -15.0
+offset_right = 17.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Quit"
+fit_content = true
+autowrap_mode = 0
+autowrap_trim_flags = 0
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="TextureButton" parent="." unique_id=623369589]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.55
+anchor_right = 0.2
+anchor_bottom = 0.55
+offset_left = 64.0
+offset_right = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+action_mode = 0
+texture_normal = ExtResource("2_ekxnf")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="StartButton" unique_id=1655780170]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -11.5
+offset_right = 19.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Start"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
