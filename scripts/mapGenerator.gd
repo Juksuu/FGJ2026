@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func load_level(level: int) -> void:
 	level_map = []
-	var json_as_text = FileAccess.get_file_as_string(level_1_Data)
+	var json_as_text = FileAccess.get_file_as_string(level_0_Data)
 	var level_data = JSON.parse_string(json_as_text)
 
 	var height = level_data.rooms.size()

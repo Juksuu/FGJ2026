@@ -50,6 +50,7 @@ func scream(node) -> void:
 	if node.name != "Player":
 		pass
 	print("winnings")
+	RenderingServer.global_shader_parameter_set("mask_color", Vector4(1,1,1,1))
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
@@ -95,7 +96,7 @@ func create_door(room_side: Globals.ROOM_SIDE, options = null) -> Node:
 
 func check_openness(keys = null):
 	for door in doors:
-		if keys == null and door.has_been_culled():
+		if keys == null and door.has_been_culled() and door.should_be_culled():
 			door.toggle_door(true)
 		elif keys != null and Globals.COLOR_OPTIONS[keys] == door.key_color and door.has_been_culled():
 			door.toggle_door(true)

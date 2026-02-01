@@ -36,3 +36,6 @@ func set_culling_mask(emit = true) -> void:
 
 func has_been_culled() -> bool:
 	return not cullable or is_culled
+
+func should_be_culled() -> bool:
+	return cullable
