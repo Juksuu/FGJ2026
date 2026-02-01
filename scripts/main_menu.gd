@@ -13,10 +13,8 @@ func _process(delta: float) -> void:
 
 
 func _on_quit_button_pressed() -> void:
-	print("quit")
 	get_tree().quit()
 
 
 func _on_start_button_pressed() -> void:
-	print("Start Button pressed")
 	get_tree().change_scene_to_packed(start_level)

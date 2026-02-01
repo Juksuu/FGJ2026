@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func set_color(color: Vector4) -> void:
 	key_color = color
-	door.material.set_shader_parameter("color", color)
+	door.set_instance_shader_parameter("color", color)
 
 func set_cullable() -> void:
 	cullable = true
@@ -35,5 +35,4 @@ func set_culling_mask(emit = true) -> void:
 		apply_culling_mask.emit()
 
 func has_been_culled() -> bool:
-	#print("testing", cullable, is_culled)
 	return not cullable or is_culled

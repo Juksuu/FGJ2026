@@ -13,15 +13,13 @@ var level_map = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("loading")
 	load_level(0)
 
 func load_level(level: int) -> void:
 	level_map = []
-	var json_as_text = FileAccess.get_file_as_string(level_0_Data)
+	var json_as_text = FileAccess.get_file_as_string(level_1_Data)
 	var level_data = JSON.parse_string(json_as_text)
 
-	#print(level_data)
 	var height = level_data.rooms.size()
 	var width = level_data.rooms[0].size()
 
@@ -35,7 +33,11 @@ func load_level(level: int) -> void:
 			self.add_child(room)
 			room_column.append(room)
 
-			#print(room_info)
+			player.connect("worn_a_mask", room.check_openness)
+			# player.connect("worn_a_mask", to_room.check_openness)
+			player.connect("culling_mask_applied", room.check_openness)
+			# player.connect("culling_mask_applied", to_room.check_openness)
+
 			if room_info == "#":
 				room.hide_wall(0)
 				room.hide_wall(1)
@@ -59,6 +61,7 @@ func load_level(level: int) -> void:
 
 		var from_door = null
 		var to_door = null
+
 		if delta_x != 0:
 			if delta_x > 0:
 				from_door = from_room.create_door(Globals.ROOM_SIDE.EAST,door_data.keys)
@@ -78,17 +81,11 @@ func load_level(level: int) -> void:
 			from_door.apply_culling_mask.connect(func(): to_door.set_culling_mask(false))
 			to_door.apply_culling_mask.connect(func(): from_door.set_culling_mask(false))
 
-		player.connect("worn_a_mask", from_room.check_openness)
-		player.connect("worn_a_mask", to_room.check_openness)
-
-		player.connect("culling_mask_applied", from_room.check_openness)
-		player.connect("culling_mask_applied", to_room.check_openness)
 
 	#pickups
 	for i in level_data.masks.size():
 		if level_data.masks.size() == 0:
 			break
-		#print(level_data.masks[i])
 		var mask = chroma_prefab.instantiate()
 		mask.transform.origin.x = level_data.masks[i].pos[0] * SIZE_X
 		mask.transform.origin.z = level_data.masks[i].pos[1] * SIZE_Z

@@ -6,7 +6,7 @@ uniform vec2 sheet_size;
 uniform vec2 sheet_start;
 uniform vec2 mask_size;
 
-uniform vec4 color = vec4(1, 1, 1, 0);
+instance uniform vec4 color = vec4(1, 1, 1, 0);
 
 uniform sampler2D mask_texture : hint_default_transparent;
 

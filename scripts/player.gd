@@ -125,7 +125,7 @@ func remove_mask() -> void:
 	$Remove.play()
 	RenderingServer.global_shader_parameter_set("mask_color", Vector4(1,1,1,1))
 	current_mask_id = null
-	worn_a_mask.emit(null)
+	worn_a_mask.emit()
 
 func cast_mask() -> void:
 	$Cast.stream.loop = false
@@ -145,5 +145,4 @@ func cast_mask() -> void:
 		var parent = result.collider.get_parent()
 		if parent and parent.name == "Door":
 			parent.set_culling_mask()
-		if current_mask_id:
-			culling_mask_applied.emit(current_mask_id)
+			culling_mask_applied.emit()

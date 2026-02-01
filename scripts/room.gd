@@ -41,8 +41,8 @@ func change_floor() -> void:
 	cylinder.radius = 1
 	collision_shape.shape = cylinder
 	win_area.add_child(collision_shape)
-	
-	
+
+
 	win_area.connect("body_entered", scream)
 
 
@@ -53,16 +53,6 @@ func scream(node) -> void:
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-#func create_door(room_side: Globals.ROOM_SIDE, color: Vector4) -> void:
-#	var door = door_prefab.instantiate()
-#	self.add_child(door)
-#	doors.append(door)
-#
-#	door.set_color(color)
-#
-#	var data = SIDE_DATA[room_side]
-#	door.transform.origin = data.pos
-#	door.rotation.y = data.rotation
 
 func mix_paints(options) -> Vector4:
 	var tot_r = 0
@@ -103,11 +93,11 @@ func create_door(room_side: Globals.ROOM_SIDE, options = null) -> Node:
 
 	return door
 
-func check_openness(keys):
+func check_openness(keys = null):
 	for door in doors:
-		if keys == null:
-			door.toggle_door(false)
-		elif Globals.COLOR_OPTIONS[keys] == door.key_color and door.has_been_culled():
+		if keys == null and door.has_been_culled():
+			door.toggle_door(true)
+		elif keys != null and Globals.COLOR_OPTIONS[keys] == door.key_color and door.has_been_culled():
 			door.toggle_door(true)
 		else:
 			door.toggle_door(false)
