@@ -19,7 +19,9 @@ void fragment() {
 	vec4 c = texture(TEXTURE, UV);
 	float is_transparent = step(c.a, 0);
 
-	vec4 combined_color = color + mask_color;
+	float global_mask_color_is_white = float(all(equal(mask_color.rgb, vec3(1))));
+
+	vec4 combined_color = color + (mask_color * (1.0 - vec4(global_mask_color_is_white)));
 	combined_color.rgb /= max3(combined_color);
 
 	float mask_is_color = float(all(equal(color.rgb, mask_color.rgb)));

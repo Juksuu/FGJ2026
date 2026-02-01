@@ -12,8 +12,9 @@ void fragment() {
 	vec4 c = texture(TEXTURE, UV);
 
 	float is_white = float(all(equal(c, vec4(1))));
+	float global_mask_color_is_white = float(all(equal(mask_color.rgb, vec3(1))));
 
-	vec4 combined_color = color + mask_color;
+	vec4 combined_color = color + (mask_color * (1.0 - vec4(global_mask_color_is_white)));
 	combined_color.rgb /= max3(combined_color);
 
 	vec4 applied_color = mix(c, combined_color, is_white);

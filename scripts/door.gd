@@ -12,6 +12,7 @@ signal apply_culling_mask()
 
 func _ready() -> void:
 	door.material.resource_local_to_scene = true;
+	door.material.set_shader_parameter("mask_texture", null)
 
 func set_color(color: Vector4) -> void:
 	key_color = color
