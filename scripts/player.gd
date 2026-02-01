@@ -14,6 +14,7 @@ var rotation_speed: float = 0.03
 var held_masks = []
 var inv_index = 0
 var current_mask_id = null
+var walk_cooldown = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -64,6 +65,13 @@ func _physics_process(_delta: float) -> void:
 	)
 	move = move.normalized().rotated(Vector3.UP, yaw)
 
+	self.walk_cooldown -= _delta
+	if !move.is_zero_approx(): 
+		if self.walk_cooldown <= 0:
+			$Walk.stream.loop = false
+			$Walk.pitch_scale = randf_range(0.8, 1.4)
+			$Walk.play()
+			self.walk_cooldown = 0.4
 	velocity.x = move.x * walk_speed
 	velocity.z = move.z * walk_speed
 
@@ -79,6 +87,9 @@ func set_initial_look_direction(direction: Globals.ROOM_SIDE) -> void:
 	yaw = direction * PI - rotation_offset
 
 func add_to_inventory(object) -> void:
+	$Pickup.stream.loop = false
+	$Pickup.pitch_scale = randf_range(0.8, 1.4)
+	$Pickup.play()
 	held_masks.append(object)
 
 func update_held_item() -> void:
@@ -99,6 +110,9 @@ signal worn_a_mask(key_ids);
 func wear_mask() -> void:
 	if inv_index == 0:
 		return
+	$Wear.stream.loop = false
+	$Wear.pitch_scale = randf_range(0.8, 1.4)
+	$Wear.play()
 	var held_mask = held_masks[inv_index-1]
 	if held_mask.type == "chroma":
 		RenderingServer.global_shader_parameter_set("mask_color", Globals.COLOR_OPTIONS[held_mask.id])
@@ -106,11 +120,17 @@ func wear_mask() -> void:
 		worn_a_mask.emit(held_mask.id)
 
 func remove_mask() -> void:
+	$Remove.stream.loop = false
+	$Remove.pitch_scale = randf_range(0.8, 1.4)
+	$Remove.play()
 	RenderingServer.global_shader_parameter_set("mask_color", Vector4(1,1,1,1))
 	current_mask_id = null
 	worn_a_mask.emit(null)
 
 func cast_mask() -> void:
+	$Cast.stream.loop = false
+	$Cast.pitch_scale = randf_range(0.8, 1.4)
+	$Cast.play()
 	var from = camera.project_ray_origin(Vector2(640, 360))
 	var to = from + camera.project_ray_normal(Vector2(640, 360)) * 1000
 

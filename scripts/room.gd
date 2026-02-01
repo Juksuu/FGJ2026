@@ -52,7 +52,7 @@ func scream(node) -> void:
 	print("winnings")
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	call_deferred("get_tree().change_scene_to_file(\"res://scenes/main_menu.tscn\")")
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 #func create_door(room_side: Globals.ROOM_SIDE, color: Vector4) -> void:
 #	var door = door_prefab.instantiate()
 #	self.add_child(door)
